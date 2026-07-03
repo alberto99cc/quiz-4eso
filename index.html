@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escape Room HTML - 4t d'ESO</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Escape Room HTML</h1>
+
+  <div class="intro">
+    <p>Cada repte desbloqueja el següent. Contesta correctament i avança a la següent pàgina com si fos un llibre.</p>
+    <ul>
+      <li>Nivell 1: falta una etiqueta.</li>
+      <li>Nivell 2: una etiqueta està mal tancada.</li>
+      <li>Nivell 3: les etiquetes estan desordenades.</li>
+      <li>Nivell 4: cal completar una pàgina sencera.</li>
+      <li>Nivell 5: etiqueta per a llista numerada.</li>
+      <li>Nivell 6: etiqueta semàntica per al contingut principal.</li>
+      <li>Nivell 7: enllaç amb text visible.</li>
+    </ul>
+  </div>
+
+  <div class="progress-container">
+    <div class="progress-text">Progrés: 1 / 7</div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 14%"></div>
+    </div>
+  </div>
+
+  <section class="pregunta page" id="level-1">
+    <h2>Nivell 1: falta una etiqueta</h2>
+    <p>Completa el codi amb l'etiqueta que falta:</p>
+    <pre><code>&lt;h1&gt;Benvinguts a l'escape room...</code></pre>
+    <label><input type="radio" name="level1" value="wrong1"> &lt;h1&gt;Benvinguts a l'escape room...&lt;h1&gt;</label>
+    <label><input type="radio" name="level1" value="correct"> &lt;h1&gt;Benvinguts a l'escape room...&lt;/h1&gt;</label>
+    <label><input type="radio" name="level1" value="wrong2"> &lt;h1&gt;Benvinguts a l'escape room...&lt;/h2&gt;</label>
+    <button data-level="1">Comprova i segueix</button>
+    <p class="message" aria-live="polite"></p>
+  </section>
+
+  <section class="pregunta page hidden" id="level-2">
+    <h2>Nivell 2: etiqueta mal tancada</h2>
+    <p>Quina versió soluciona el tancament incorrecte?</p>
+    <pre><code>&lt;p&gt;Aquesta frase està correcta per a HTML.&lt;/span&gt;</code></pre>
+    <label><input type="radio" name="level2" value="wrong1"> &lt;p&gt;Aquesta frase està correcta per a HTML.&lt;/p&gt;</label>
+    <label><input type="radio" name="level2" value="correct"> &lt;span&gt;Aquesta frase està correcta per a HTML.&lt;/span&gt;</label>
+    <label><input type="radio" name="level2" value="wrong2"> &lt;p&gt;Aquesta frase està correcta per a HTML.&lt;/div&gt;</label>
+    <button data-level="2">Comprova i segueix</button>
+    <p class="message" aria-live="polite"></p>
+  </section>
+
+  <section class="pregunta page hidden" id="level-3">
+    <h2>Nivell 3: etiquetes desordenades</h2>
+    <p>Aquesta combinació està mal ordenada. Quina opció és correcta?</p>
+    <pre><code>&lt;strong&gt;&lt;em&gt;Text important&lt;/strong&gt;&lt;/em&gt;</code></pre>
+    <label><input type="radio" name="level3" value="wrong1"> &lt;em&gt;&lt;strong&gt;Text important&lt;/em&gt;&lt;/strong&gt;</label>
+    <label><input type="radio" name="level3" value="correct"> &lt;strong&gt;&lt;em&gt;Text important&lt;/em&gt;&lt;/strong&gt;</label>
+    <label><input type="radio" name="level3" value="wrong2"> &lt;strong&gt;Text important&lt;/strong&gt;&lt;em&gt;&lt;/em&gt;</label>
+    <button data-level="3">Comprova i segueix</button>
+    <p class="message" aria-live="polite"></p>
+  </section>
+
+  <section class="pregunta page hidden" id="level-4">
+    <h2>Nivell 4: completa la pàgina</h2>
+    <p>Quina etiqueta falta per completar aquesta pàgina?</p>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Escape Room&lt;/title&gt;
+  &lt;/head&gt;
+  ???
+    &lt;h1&gt;A punt de sortir&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <label><input type="radio" name="level4" value="wrong1"> &lt;container&gt;</label>
+    <label><input type="radio" name="level4" value="correct"> &lt;body&gt;</label>
+    <label><input type="radio" name="level4" value="wrong2"> &lt;section&gt;</label>
+    <button data-level="4">Comprova i segueix</button>
+    <p class="message" aria-live="polite"></p>
+  </section>
+
+  <section class="pregunta page hidden" id="level-5">
+    <h2>Nivell 5: llista numerada</h2>
+    <p>Quina etiqueta s'utilitza per a una llista numerada?</p>
+    <label><input type="radio" name="level5" value="wrong1"> &lt;ul&gt;</label>
+    <label><input type="radio" name="level5" value="correct"> &lt;ol&gt;</label>
+    <label><input type="radio" name="level5" value="wrong2"> &lt;dl&gt;</label>
+    <button data-level="5">Comprova i segueix</button>
+    <p class="message" aria-live="polite"></p>
+  </section>
+
+  <section class="pregunta page hidden" id="level-6">
+    <h2>Nivell 6: etiqueta semàntica</h2>
+    <p>Quina etiqueta és la més adequada per al contingut principal?</p>
+    <label><input type="radio" name="level6" value="wrong1"> &lt;section&gt;</label>
+    <label><input type="radio" name="level6" value="correct"> &lt;main&gt;</label>
+    <label><input type="radio" name="level6" value="wrong2"> &lt;aside&gt;</label>
+    <button data-level="6">Comprova i segueix</button>
+    <p class="message" aria-live="polite"></p>
+  </section>
+
+  <section class="pregunta page hidden" id="level-7">
+    <h2>Nivell 7: enllaç amb text visible</h2>
+    <p>Quina opció crea un enllaç correcte amb text visible?</p>
+    <label><input type="radio" name="level7" value="wrong1"> &lt;link&gt;Visita&lt;/link&gt;</label>
+    <label><input type="radio" name="level7" value="correct"> &lt;a href="https://example.com"&gt;Visita&lt;/a&gt;</label>
+    <label><input type="radio" name="level7" value="wrong2"> &lt;button&gt;Visita&lt;/button&gt;</label>
+    <button data-level="7">Comprova i finalitza</button>
+    <p class="message" aria-live="polite"></p>
+  </section>
+
+  <section class="pregunta hidden final-message" id="final-step">
+    <h2>🎉 Enhorabona!</h2>
+    <p>Has superat tots els nivells de l'Escape Room HTML. Ara saps identificar etiquetes que falten, tancaments erronis, ordenació incorrecta i com completar una pàgina HTML.</p>
+  </section>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
