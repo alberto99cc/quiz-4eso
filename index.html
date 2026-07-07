@@ -3,69 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escape Room HTML - 4t d'ESO</title>
+  <title>HTML Learning Lab - 4t d'ESO</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Escape Room HTML</h1>
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow" id="hero-eyebrow">Aprenentatge interactiu</p>
+      <h1 id="hero-title">HTML Learning Lab</h1>
+      <p class="hero-copy" id="hero-copy">Tria una activitat per practicar HTML de manera visual, intuïtiva i divertida.</p>
+      <div class="lang-switcher" role="group" aria-label="Idioma">
+        <button class="lang-btn active" data-lang="ca">Valencià</button>
+        <button class="lang-btn" data-lang="es">Español</button>
+      </div>
+    </header>
 
-  <div class="intro">
-    <p>Cada repte desbloqueja el següent. Contesta correctament i avança a la següent pàgina com si fos un llibre.</p>
-    <ul>
-      <li>Nivell 1: falta una etiqueta.</li>
-      <li>Nivell 2: una etiqueta està mal tancada.</li>
-      <li>Nivell 3: les etiquetes estan desordenades.</li>
-      <li>Nivell 4: cal completar una pàgina sencera.</li>
-      <li>Nivell 5: etiqueta per a llista numerada.</li>
-      <li>Nivell 6: etiqueta semàntica per al contingut principal.</li>
-      <li>Nivell 7: enllaç amb text visible.</li>
-    </ul>
-  </div>
+    <section class="home-screen" id="home-screen">
+      <div class="mode-grid">
+        <article class="mode-card">
+          <h2 id="home-quiz-title">Nivell 1: Escape Room Quiz</h2>
+          <p id="home-quiz-copy">Respon preguntes sobre etiquetes, tancaments i estructura HTML per avançar de forma gradual.</p>
+          <button class="mode-btn" data-mode="quiz" id="home-quiz-btn">Entrar al quiz</button>
+        </article>
 
-  <div class="progress-container">
-    <div class="progress-text">Progrés: 1 / 7</div>
-    <div class="progress-bar">
-      <div class="progress-fill" style="width: 14%"></div>
-    </div>
-  </div>
+        <article class="mode-card">
+          <h2 id="home-drag-title">Nivell 2: Arrastra les etiquetes</h2>
+          <p id="home-drag-copy">Completa un exemple HTML arrossegant les etiquetes correctes als espais buits.</p>
+          <button class="mode-btn" data-mode="drag" id="home-drag-btn">Entrar al joc</button>
+        </article>
+      </div>
+    </section>
 
-  <section class="pregunta page" id="level-1">
-    <h2>Nivell 1: falta una etiqueta</h2>
-    <p>Completa el codi amb l'etiqueta que falta:</p>
-    <pre><code>&lt;h1&gt;Benvinguts a l'escape room...</code></pre>
-    <label><input type="radio" name="level1" value="wrong1"> &lt;h1&gt;Benvinguts a l'escape room...&lt;h1&gt;</label>
-    <label><input type="radio" name="level1" value="correct"> &lt;h1&gt;Benvinguts a l'escape room...&lt;/h1&gt;</label>
-    <label><input type="radio" name="level1" value="wrong2"> &lt;h1&gt;Benvinguts a l'escape room...&lt;/h2&gt;</label>
-    <button data-level="1">Comprova i segueix</button>
-    <p class="message" aria-live="polite"></p>
-  </section>
+    <section class="mode-panel hidden" id="quiz-mode">
+      <button class="secondary-btn back-home" data-screen="home">← Tornar al menú</button>
 
-  <section class="pregunta page hidden" id="level-2">
-    <h2>Nivell 2: etiqueta mal tancada</h2>
-    <p>Quina versió soluciona el tancament incorrecte?</p>
-    <pre><code>&lt;p&gt;Aquesta frase està correcta per a HTML.&lt;/span&gt;</code></pre>
-    <label><input type="radio" name="level2" value="wrong1"> &lt;p&gt;Aquesta frase està correcta per a HTML.&lt;/p&gt;</label>
-    <label><input type="radio" name="level2" value="correct"> &lt;span&gt;Aquesta frase està correcta per a HTML.&lt;/span&gt;</label>
-    <label><input type="radio" name="level2" value="wrong2"> &lt;p&gt;Aquesta frase està correcta per a HTML.&lt;/div&gt;</label>
-    <button data-level="2">Comprova i segueix</button>
-    <p class="message" aria-live="polite"></p>
-  </section>
+      <div class="intro">
+        <p id="quiz-intro-text">Cada repte desbloqueja el següent. Contesta correctament i avança a la següent pàgina com si fos un llibre.</p>
+        <ul>
+          <li id="quiz-intro-item-1">Nivell 1: falta una etiqueta.</li>
+          <li id="quiz-intro-item-2">Nivell 2: una etiqueta està mal tancada.</li>
+          <li id="quiz-intro-item-3">Nivell 3: les etiquetes estan desordenades.</li>
+          <li id="quiz-intro-item-4">Nivell 4: cal completar una pàgina sencera.</li>
+          <li id="quiz-intro-item-5">Nivell 5: etiqueta per a llista numerada.</li>
+          <li id="quiz-intro-item-6">Nivell 6: etiqueta semàntica per al contingut principal.</li>
+          <li id="quiz-intro-item-7">Nivell 7: enllaç amb text visible.</li>
+        </ul>
+      </div>
 
-  <section class="pregunta page hidden" id="level-3">
-    <h2>Nivell 3: etiquetes desordenades</h2>
-    <p>Aquesta combinació està mal ordenada. Quina opció és correcta?</p>
-    <pre><code>&lt;strong&gt;&lt;em&gt;Text important&lt;/strong&gt;&lt;/em&gt;</code></pre>
-    <label><input type="radio" name="level3" value="wrong1"> &lt;em&gt;&lt;strong&gt;Text important&lt;/em&gt;&lt;/strong&gt;</label>
-    <label><input type="radio" name="level3" value="correct"> &lt;strong&gt;&lt;em&gt;Text important&lt;/em&gt;&lt;/strong&gt;</label>
-    <label><input type="radio" name="level3" value="wrong2"> &lt;strong&gt;Text important&lt;/strong&gt;&lt;em&gt;&lt;/em&gt;</label>
-    <button data-level="3">Comprova i segueix</button>
-    <p class="message" aria-live="polite"></p>
-  </section>
+      <div class="progress-container">
+        <div class="progress-text">Progrés: 1 / 7</div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 14%"></div>
+        </div>
+      </div>
 
-  <section class="pregunta page hidden" id="level-4">
-    <h2>Nivell 4: completa la pàgina</h2>
-    <p>Quina etiqueta falta per completar aquesta pàgina?</p>
-    <pre><code>&lt;!DOCTYPE html&gt;
+      <section class="pregunta page" id="level-1">
+        <h2 id="quiz-level-1-title">Nivell 1: falta una etiqueta</h2>
+        <p id="quiz-level-1-copy">Completa el codi amb l'etiqueta que falta:</p>
+        <pre><code>&lt;h1&gt;Benvinguts a l'escape room...</code></pre>
+        <label><input type="radio" name="level1" value="wrong1"> &lt;h1&gt;Benvinguts a l'escape room...&lt;h1&gt;</label>
+        <label><input type="radio" name="level1" value="correct"> &lt;h1&gt;Benvinguts a l'escape room...&lt;/h1&gt;</label>
+        <label><input type="radio" name="level1" value="wrong2"> &lt;h1&gt;Benvinguts a l'escape room...&lt;/h2&gt;</label>
+        <button data-level="1">Comprova i segueix</button>
+        <p class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="pregunta page hidden" id="level-2">
+        <h2 id="quiz-level-2-title">Nivell 2: etiqueta mal tancada</h2>
+        <p id="quiz-level-2-copy">Quina versió soluciona el tancament incorrecte?</p>
+        <pre><code>&lt;p&gt;Aquesta frase està correcta per a HTML.&lt;/span&gt;</code></pre>
+        <label><input type="radio" name="level2" value="wrong1"> &lt;p&gt;Aquesta frase està correcta per a HTML.&lt;/p&gt;</label>
+        <label><input type="radio" name="level2" value="correct"> &lt;span&gt;Aquesta frase està correcta per a HTML.&lt;/span&gt;</label>
+        <label><input type="radio" name="level2" value="wrong2"> &lt;p&gt;Aquesta frase està correcta per a HTML.&lt;/div&gt;</label>
+        <button data-level="2">Comprova i segueix</button>
+        <p class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="pregunta page hidden" id="level-3">
+        <h2 id="quiz-level-3-title">Nivell 3: etiquetes desordenades</h2>
+        <p id="quiz-level-3-copy">Aquesta combinació està mal ordenada. Quina opció és correcta?</p>
+        <pre><code>&lt;strong&gt;&lt;em&gt;Text important&lt;/strong&gt;&lt;/em&gt;</code></pre>
+        <label><input type="radio" name="level3" value="wrong1"> &lt;em&gt;&lt;strong&gt;Text important&lt;/em&gt;&lt;/strong&gt;</label>
+        <label><input type="radio" name="level3" value="correct"> &lt;strong&gt;&lt;em&gt;Text important&lt;/em&gt;&lt;/strong&gt;</label>
+        <label><input type="radio" name="level3" value="wrong2"> &lt;strong&gt;Text important&lt;/strong&gt;&lt;em&gt;&lt;/em&gt;</label>
+        <button data-level="3">Comprova i segueix</button>
+        <p class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="pregunta page hidden" id="level-4">
+        <h2 id="quiz-level-4-title">Nivell 4: completa la pàgina</h2>
+        <p id="quiz-level-4-copy">Quina etiqueta falta per completar aquesta pàgina?</p>
+        <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="ca"&gt;
   &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -75,47 +103,173 @@
     &lt;h1&gt;A punt de sortir&lt;/h1&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-    <label><input type="radio" name="level4" value="wrong1"> &lt;container&gt;</label>
-    <label><input type="radio" name="level4" value="correct"> &lt;body&gt;</label>
-    <label><input type="radio" name="level4" value="wrong2"> &lt;section&gt;</label>
-    <button data-level="4">Comprova i segueix</button>
-    <p class="message" aria-live="polite"></p>
-  </section>
+        <label><input type="radio" name="level4" value="wrong1"> &lt;container&gt;</label>
+        <label><input type="radio" name="level4" value="correct"> &lt;body&gt;</label>
+        <label><input type="radio" name="level4" value="wrong2"> &lt;section&gt;</label>
+        <button data-level="4">Comprova i segueix</button>
+        <p class="message" aria-live="polite"></p>
+      </section>
 
-  <section class="pregunta page hidden" id="level-5">
-    <h2>Nivell 5: llista numerada</h2>
-    <p>Quina etiqueta s'utilitza per a una llista numerada?</p>
-    <label><input type="radio" name="level5" value="wrong1"> &lt;ul&gt;</label>
-    <label><input type="radio" name="level5" value="correct"> &lt;ol&gt;</label>
-    <label><input type="radio" name="level5" value="wrong2"> &lt;dl&gt;</label>
-    <button data-level="5">Comprova i segueix</button>
-    <p class="message" aria-live="polite"></p>
-  </section>
+      <section class="pregunta page hidden" id="level-5">
+        <h2 id="quiz-level-5-title">Nivell 5: llista numerada</h2>
+        <p id="quiz-level-5-copy">Quina etiqueta s'utilitza per a una llista numerada?</p>
+        <label><input type="radio" name="level5" value="wrong1"> &lt;ul&gt;</label>
+        <label><input type="radio" name="level5" value="correct"> &lt;ol&gt;</label>
+        <label><input type="radio" name="level5" value="wrong2"> &lt;dl&gt;</label>
+        <button data-level="5">Comprova i segueix</button>
+        <p class="message" aria-live="polite"></p>
+      </section>
 
-  <section class="pregunta page hidden" id="level-6">
-    <h2>Nivell 6: etiqueta semàntica</h2>
-    <p>Quina etiqueta és la més adequada per al contingut principal?</p>
-    <label><input type="radio" name="level6" value="wrong1"> &lt;section&gt;</label>
-    <label><input type="radio" name="level6" value="correct"> &lt;main&gt;</label>
-    <label><input type="radio" name="level6" value="wrong2"> &lt;aside&gt;</label>
-    <button data-level="6">Comprova i segueix</button>
-    <p class="message" aria-live="polite"></p>
-  </section>
+      <section class="pregunta page hidden" id="level-6">
+        <h2 id="quiz-level-6-title">Nivell 6: etiqueta semàntica</h2>
+        <p id="quiz-level-6-copy">Quina etiqueta és la més adequada per al contingut principal?</p>
+        <label><input type="radio" name="level6" value="wrong1"> &lt;section&gt;</label>
+        <label><input type="radio" name="level6" value="correct"> &lt;main&gt;</label>
+        <label><input type="radio" name="level6" value="wrong2"> &lt;aside&gt;</label>
+        <button data-level="6">Comprova i segueix</button>
+        <p class="message" aria-live="polite"></p>
+      </section>
 
-  <section class="pregunta page hidden" id="level-7">
-    <h2>Nivell 7: enllaç amb text visible</h2>
-    <p>Quina opció crea un enllaç correcte amb text visible?</p>
-    <label><input type="radio" name="level7" value="wrong1"> &lt;link&gt;Visita&lt;/link&gt;</label>
-    <label><input type="radio" name="level7" value="correct"> &lt;a href="https://example.com"&gt;Visita&lt;/a&gt;</label>
-    <label><input type="radio" name="level7" value="wrong2"> &lt;button&gt;Visita&lt;/button&gt;</label>
-    <button data-level="7">Comprova i finalitza</button>
-    <p class="message" aria-live="polite"></p>
-  </section>
+      <section class="pregunta page hidden" id="level-7">
+        <h2 id="quiz-level-7-title">Nivell 7: enllaç amb text visible</h2>
+        <p id="quiz-level-7-copy">Quina opció crea un enllaç correcte amb text visible?</p>
+        <label><input type="radio" name="level7" value="wrong1"> &lt;link&gt;Visita&lt;/link&gt;</label>
+        <label><input type="radio" name="level7" value="correct"> &lt;a href="https://example.com"&gt;Visita&lt;/a&gt;</label>
+        <label><input type="radio" name="level7" value="wrong2"> &lt;button&gt;Visita&lt;/button&gt;</label>
+        <button data-level="7">Comprova i finalitza</button>
+        <p class="message" aria-live="polite"></p>
+      </section>
 
-  <section class="pregunta hidden final-message" id="final-step">
-    <h2>🎉 Enhorabona!</h2>
-    <p>Has superat tots els nivells de l'Escape Room HTML. Ara saps identificar etiquetes que falten, tancaments erronis, ordenació incorrecta i com completar una pàgina HTML.</p>
-  </section>
+      <section class="pregunta hidden final-message" id="final-step">
+        <h2 id="quiz-final-title">🎉 Enhorabona!</h2>
+        <p id="quiz-final-copy">Has superat tots els nivells de l'Escape Room HTML. Ara saps identificar etiquetes que falten, tancaments erronis, ordenació incorrecta i com completar una pàgina HTML.</p>
+      </section>
+    </section>
+
+    <section class="mode-panel hidden" id="drag-mode">
+      <button class="secondary-btn back-home" data-screen="home">← Tornar al menú</button>
+
+      <div class="drag-intro">
+        <h2 id="drag-intro-title">Completa el codi amb les etiquetes adequades</h2>
+        <p id="drag-intro-copy">Cada nivell presenta un fragment de codi amb espais buits. Arrossega l'etiqueta correcta i comprova si ho has fet bé.</p>
+        <div class="drag-legend">
+          <span class="legend-item" id="drag-legend-p"><span class="legend-dot dot-p"></span>Paràgraf</span>
+          <span class="legend-item" id="drag-legend-a"><span class="legend-dot dot-a"></span>Enllaç</span>
+          <span class="legend-item" id="drag-legend-img"><span class="legend-dot dot-img"></span>Imatge</span>
+        </div>
+      </div>
+
+      <div class="level-indicator" id="drag-level-indicator">Nivell 1 / 5</div>
+
+      <div class="drag-game hidden" id="drag-level-1">
+        <div class="code-card">
+          <pre><code>&lt;main&gt;
+  &lt;h1&gt;Benvinguts&lt;/h1&gt;
+  <span class="slot" data-slot="1" data-correct="p"><span class="placeholder">Arrossega aquí</span></span>
+  <span class="slot" data-slot="2" data-correct="a"><span class="placeholder">Arrossega aquí</span></span>
+  <span class="slot" data-slot="3" data-correct="img"><span class="placeholder">Arrossega aquí</span></span>
+&lt;/main&gt;</code></pre>
+        </div>
+
+        <div class="tag-bank" aria-label="Etiquetes disponibles">
+          <p class="bank-title">Etiquetes disponibles</p>
+          <div class="tag" draggable="true" data-tag="p"><strong>&lt;p&gt;</strong><span>Paràgraf</span></div>
+          <div class="tag" draggable="true" data-tag="a"><strong>&lt;a&gt;</strong><span>Enllaç</span></div>
+          <div class="tag" draggable="true" data-tag="img"><strong>&lt;img&gt;</strong><span>Imatge</span></div>
+        </div>
+
+        <div class="theory-card hidden" id="theory-1">
+          <h3>Per què és correcte?</h3>
+          <p>La etiqueta <strong>&lt;p&gt;</strong> serveix per escriure un paràgraf, <strong>&lt;a&gt;</strong> crea un enllaç i <strong>&lt;img&gt;</strong> inserta una imatge. Cada etiqueta té una funció concreta dins la pàgina.</p>
+        </div>
+      </div>
+
+      <div class="drag-game hidden" id="drag-level-2">
+        <div class="code-card">
+          <pre><code>&lt;section&gt;
+  <span class="slot" data-slot="1" data-correct="h2"><span class="placeholder">Arrossega aquí</span></span>
+  <span class="slot" data-slot="2" data-correct="p"><span class="placeholder">Arrossega aquí</span></span>
+&lt;/section&gt;</code></pre>
+        </div>
+
+        <div class="tag-bank" aria-label="Etiquetes disponibles">
+          <p class="bank-title">Etiquetes disponibles</p>
+          <div class="tag" draggable="true" data-tag="h2"><strong>&lt;h2&gt;</strong><span>Títol secundari</span></div>
+          <div class="tag" draggable="true" data-tag="p"><strong>&lt;p&gt;</strong><span>Paràgraf</span></div>
+        </div>
+
+        <div class="theory-card hidden" id="theory-2">
+          <h3>Per què és correcte?</h3>
+          <p>Un <strong>&lt;h2&gt;</strong> s'utilitza per a un subtítol i <strong>&lt;p&gt;</strong> per a un paràgraf. L'ordre i la funció de cada etiqueta ajuden a estructurar el text.</p>
+        </div>
+      </div>
+
+      <div class="drag-game hidden" id="drag-level-3">
+        <div class="code-card">
+          <pre><code>&lt;ul&gt;
+  <span class="slot" data-slot="1" data-correct="li"><span class="placeholder">Arrossega aquí</span></span>
+  <span class="slot" data-slot="2" data-correct="li"><span class="placeholder">Arrossega aquí</span></span>
+&lt;/ul&gt;</code></pre>
+        </div>
+
+        <div class="tag-bank" aria-label="Etiquetes disponibles">
+          <p class="bank-title">Etiquetes disponibles</p>
+          <div class="tag" draggable="true" data-tag="li"><strong>&lt;li&gt;</strong><span>Element de llista</span></div>
+        </div>
+
+        <div class="theory-card hidden" id="theory-3">
+          <h3>Per què és correcte?</h3>
+          <p>Les llistes s'estructuren amb <strong>&lt;ul&gt;</strong> o <strong>&lt;ol&gt;</strong> i cada element interior es marca amb <strong>&lt;li&gt;</strong>. Aquesta etiqueta representa cada item de la llista.</p>
+        </div>
+      </div>
+
+      <div class="drag-game hidden" id="drag-level-4">
+        <div class="code-card">
+          <pre><code>&lt;a href="https://example.com"&gt;
+  <span class="slot" data-slot="1" data-correct="strong"><span class="placeholder">Arrossega aquí</span></span>
+&lt;/a&gt;</code></pre>
+        </div>
+
+        <div class="tag-bank" aria-label="Etiquetes disponibles">
+          <p class="bank-title">Etiquetes disponibles</p>
+          <div class="tag" draggable="true" data-tag="strong"><strong>&lt;strong&gt;</strong><span>Text destacat</span></div>
+        </div>
+
+        <div class="theory-card hidden" id="theory-4">
+          <h3>Per què és correcte?</h3>
+          <p><strong>&lt;strong&gt;</strong> s'utilitza per donar rellevància a un text dins d'un altre element, com un enllaç. Ajuda a destacar informació sense canviar l'estructura del contingut.</p>
+        </div>
+      </div>
+
+      <div class="drag-game hidden" id="drag-level-5">
+        <div class="code-card">
+          <pre><code>&lt;body&gt;
+  <span class="slot" data-slot="1" data-correct="h1"><span class="placeholder">Arrossega aquí</span></span>
+  <span class="slot" data-slot="2" data-correct="p"><span class="placeholder">Arrossega aquí</span></span>
+&lt;/body&gt;</code></pre>
+        </div>
+
+        <div class="tag-bank" aria-label="Etiquetes disponibles">
+          <p class="bank-title">Etiquetes disponibles</p>
+          <div class="tag" draggable="true" data-tag="h1"><strong>&lt;h1&gt;</strong><span>Títol principal</span></div>
+          <div class="tag" draggable="true" data-tag="p"><strong>&lt;p&gt;</strong><span>Paràgraf</span></div>
+        </div>
+
+        <div class="theory-card hidden" id="theory-5">
+          <h3>Per què és correcte?</h3>
+          <p><strong>&lt;h1&gt;</strong> identifica el títol principal d'una pàgina, mentre que <strong>&lt;p&gt;</strong> serveix per al text corrent. La diferència entre ambdues és clau per organitzar bé el contingut.</p>
+        </div>
+      </div>
+
+      <div class="drag-actions">
+        <button id="check-drag">Comprovar</button>
+        <button class="secondary-btn" id="reset-drag">Reiniciar</button>
+      </div>
+
+      <p class="message" id="drag-feedback" aria-live="polite"></p>
+      <button class="secondary-btn hidden" id="next-drag-level">Següent pregunta</button>
+    </section>
+  </main>
 
   <script src="app.js" defer></script>
 </body>

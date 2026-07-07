@@ -1,55 +1,52 @@
-# Escape Room HTML
+# HTML Learning Lab
 
-Proyecto educativo para 4t d'ESO que presenta un Escape Room interactivo basado en preguntas sobre HTML.
+Proyecto educativo para 4t d'ESO que combina dos actividades interactivas para aprender HTML de forma visual y práctica.
 
-## Qué contiene este proyecto
+## Qué incluye el proyecto
 
-- `index.html`: la página principal del Escape Room.
-- `styles.css`: estilos visuales separados para la página.
-- `app.js`: toda la lógica de la aplicación.
+La aplicación tiene una pantalla de inicio con dos opciones:
 
-## Cómo funciona
+1. Escape Room Quiz
+   - Una aventura por niveles con preguntas sobre HTML.
+   - Cada acierto avanza a la siguiente página.
+   - Incluye una barra de progreso visual.
 
-1. El usuario abre `index.html` en el navegador.
-2. Aparece una introducción con una lista de niveles y una barra de progreso.
-3. Cada nivel muestra un ejercicio corto de HTML.
-4. Al responder correctamente, el juego avanza automáticamente a la siguiente página.
-5. Cuando se completan los 7 niveles, se muestra una pantalla final de felicitación.
-
-## Niveles incluidos
-
-1. Falta una etiqueta en un título.
-2. Etiqueta mal cerrada.
-3. Etiquetas desordenadas.
-4. Completar la estructura de una página HTML.
-5. Elegir la etiqueta correcta para una lista numerada.
-6. Elegir la etiqueta semántica correcta para el contenido principal.
-7. Crear un enlace con texto visible.
+2. Arrastra les etiquetes
+   - Un juego nuevo basado en arrastrar etiquetas HTML a un ejemplo de código.
+   - Ayuda a comprender cómo se colocan algunas etiquetas básicas en una estructura HTML sencilla.
 
 ## Estructura de archivos
 
 - `index.html`
-  - Contiene la interfaz y los niveles.
-  - Carga `styles.css` y `app.js`.
+  - Contiene la pantalla principal, el quiz y el juego de arrastrar etiquetas.
+  - Carga los estilos y la lógica desde archivos externos.
 
 - `styles.css`
-  - Gestiona los colores, la tipografía, los contenedores y la barra de progreso.
-  - Usa `.hidden` para ocultar niveles y `.progress-fill` para mostrar el avance.
+  - Guarda todos los estilos visuales del proyecto.
+  - Incluye el diseño moderno, los botones, las tarjetas y la interfaz del juego de arrastrar etiquetas.
 
 - `app.js`
-  - Controla la navegación entre niveles.
-  - Actualiza la barra de progreso.
-  - Comprueba las respuestas y muestra mensajes de error o éxito.
+  - Contiene la lógica de navegación entre pantallas.
+  - Gestiona el quiz por niveles y el juego de arrastrar etiquetas.
+
+## Cómo funciona
+
+1. Abre `index.html` en un navegador.
+2. Elige entre el quiz o el juego de arrastrar etiquetas.
+3. En el quiz, responde correctamente a cada pregunta para avanzar.
+4. En el juego de arrastrar etiquetas, arrastra las etiquetas correctas a los espacios del ejemplo HTML y pulsa "Comprovar".
+
+## Objetivo pedagógico
+
+Este proyecto busca que el alumnado:
+
+- reconegui etiquetes HTML básicas;
+- comprengui el papel de las etiquetas en una estructura de página;
+- practiqui de forma interactiva y visual.
 
 ## Cómo probarlo
 
-1. Abrir `index.html` en un navegador moderno.
-2. Seleccionar la respuesta de cada nivel.
-3. Pulsar el botón para comprobar.
-4. Avanzar hasta completar todos los niveles.
-
-## Notas
-
-- La lógica está separada en `app.js` para mantener el HTML limpio.
-- Los estilos están en `styles.css` para facilitar modificaciones visuales.
-- El proyecto puede ampliarse con más niveles o nuevas preguntas.
+1. Abre el archivo `index.html` en tu navegador.
+2. Prueba el modo quiz.
+3. Después entra en el modo de arrastrar etiquetas.
+4. Si quieres, puedes ampliar el proyecto con más ejercicios o nuevas etiquetas.

@@ -2,22 +2,78 @@ body {
   font-family: "Segoe UI", Arial, sans-serif;
   background: linear-gradient(135deg, #f5f7ff 0%, #eef4ff 45%, #e8f7ff 100%);
   color: #172033;
-  max-width: 920px;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 960px;
   margin: 0 auto;
   padding: 40px 24px 60px;
-  min-height: 100vh;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #4b7cff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
 h1 {
   color: #133a63;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-size: 2rem;
   letter-spacing: -0.02em;
 }
 
+.hero-copy {
+  color: #546178;
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.02rem;
+}
+
+.home-screen,
+.mode-panel {
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 12px 32px rgba(20, 45, 90, 0.08);
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.mode-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f7faff 100%);
+  border: 1px solid rgba(75, 124, 255, 0.14);
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.mode-card h2 {
+  margin-top: 0;
+  color: #133a63;
+}
+
+.mode-card p {
+  color: #55606f;
+  line-height: 1.6;
+}
+
 .intro {
   background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(8px);
   padding: 20px 22px;
   border-left: 4px solid #4b7cff;
   margin-bottom: 24px;
@@ -116,8 +172,15 @@ button:disabled {
   box-shadow: none;
 }
 
+.secondary-btn {
+  background: #eef4ff;
+  color: #2f63d9;
+  box-shadow: none;
+  border: 1px solid #d8e4ff;
+}
+
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 pre {
@@ -146,4 +209,177 @@ pre {
 .final-message {
   background: linear-gradient(135deg, #eefcf3 0%, #f8fff9 100%);
   border: 1px solid #bfe5c8;
+}
+
+.drag-intro {
+  margin-bottom: 20px;
+}
+
+.level-indicator {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #2f63d9;
+  font-weight: 700;
+}
+
+.drag-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #445368;
+  font-size: 0.95rem;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-p {
+  background: #4b7cff;
+}
+
+.dot-a {
+  background: #2bb673;
+}
+
+.dot-img {
+  background: #ff8f3f;
+}
+
+.drag-game {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.code-card,
+.tag-bank {
+  background: #f8fbff;
+  border: 1px solid #e3ebff;
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.bank-title {
+  margin: 0 0 10px;
+  color: #133a63;
+  font-weight: 700;
+}
+
+.slot {
+  display: inline-block;
+  min-width: 92px;
+  min-height: 30px;
+  border: 1px dashed #9bb9ff;
+  border-radius: 10px;
+  margin: 0 6px;
+  padding: 4px 8px;
+  vertical-align: middle;
+  background: #fdfefe;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.slot .placeholder {
+  color: #7f8da3;
+  font-size: 0.9rem;
+}
+
+.slot.filled {
+  border-color: #4b7cff;
+  background: #f4f8ff;
+}
+
+.slot.correct {
+  border-color: #2bb673;
+  background: #f2fcf6;
+}
+
+.slot.wrong {
+  border-color: #e25b5b;
+  background: #fff5f5;
+}
+
+.tag {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  margin: 8px 8px 0 0;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #d8e4ff;
+  color: #2f63d9;
+  cursor: grab;
+  box-shadow: 0 4px 10px rgba(20, 45, 90, 0.05);
+}
+
+.tag span {
+  font-size: 0.82rem;
+  color: #6b7690;
+}
+
+.tag.used {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.drag-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.theory-card {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f4f8ff 0%, #eef7ff 100%);
+  border: 1px solid #d8e4ff;
+}
+
+.theory-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #133a63;
+}
+
+.theory-card p {
+  margin: 0;
+  color: #445368;
+  line-height: 1.6;
+}
+
+.theory-card .theory-ca {
+  margin-bottom: 8px;
+}
+
+.theory-card .theory-es {
+  color: #5f6d7d;
+  border-top: 1px solid #dfe8f8;
+  padding-top: 8px;
+}
+
+#next-drag-level {
+  margin-top: 12px;
+}
+
+@media (max-width: 760px) {
+  .mode-grid,
+  .drag-game {
+    grid-template-columns: 1fr;
+  }
 }
