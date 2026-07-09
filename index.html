@@ -29,10 +29,30 @@
         <article class="mode-card">
           <h2 id="home-drag-title">Nivell 2: Arrastra les etiquetes</h2>
           <p id="home-drag-copy">Completa un exemple HTML arrossegant les etiquetes correctes als espais buits.</p>
-          <button class="mode-btn" data-mode="drag" id="home-drag-btn">Entrar al joc</button>
+          <button class="mode-btn" data-mode="drag" id="home-drag-btn" disabled>Entrar al joc</button>
+          <div class="locked-caption">Bloquejat fins completar el Nivell 1</div>
         </article>
       </div>
     </section>
+
+    <div class="main-progress-wrap">
+      <svg class="main-progress" viewBox="0 0 36 36" aria-hidden="true">
+        <path class="circle-bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831A15.9155 15.9155 0 1 0 18 2.0845"/>
+        <path class="circle" stroke-dasharray="0,100" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831A15.9155 15.9155 0 1 0 18 2.0845"/>
+        <text x="18" y="20.35" class="progress-text-circle">0%</text>
+      </svg>
+    </div>
+
+    <div id="completion-banner" class="hidden">
+      <div class="banner-inner">
+        <div class="banner-icon">🏆</div>
+        <div class="banner-text">
+          <h3 id="banner-title">Has completat l'HTML Learning Lab!</h3>
+          <p id="banner-copy">Has superat amb èxit les activitats. Enhorabona!</p>
+        </div>
+        <button class="secondary-btn" id="banner-dismiss">Tancar</button>
+      </div>
+    </div>
 
     <section class="mode-panel hidden" id="quiz-mode">
       <button class="secondary-btn back-home" data-screen="home">← Tornar al menú</button>
@@ -268,9 +288,21 @@
 
       <p class="message" id="drag-feedback" aria-live="polite"></p>
       <button class="secondary-btn hidden" id="next-drag-level">Següent pregunta</button>
+
+      <div id="drag-complete" class="theory-card hidden">
+        <h3>🎉 Enhorabona!</h3>
+        <p>Has completat tots els nivells del joc d'etiquetes.</p>
+        <div style="margin-top:12px;"><button class="secondary-btn" id="drag-complete-btn">Tornar al menú</button></div>
+      </div>
     </section>
   </main>
 
   <script src="app.js" defer></script>
 </body>
+  <div class="creator-badge" aria-hidden="true">
+    <div class="creator-text">Created by Alberto Climent — 2026</div>
+    <a class="cc-link" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" title="Creative Commons BY-SA 4.0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#133a63" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9 12a3 3 0 1 0 0-6"></path><path d="M15 12a3 3 0 1 1 0-6"></path></svg>
+    </a>
+  </div>
 </html>

@@ -70,6 +70,9 @@ const translations = {
     quizFeedbackIncorrect: 'No és correcte. Torna-ho a intentar.',
     quizCheckContinue: 'Comprova i segueix',
     quizCheckFinish: 'Comprova i finalitza'
+    ,
+    completionBannerTitle: 'Has completat l\'HTML Learning Lab!',
+    completionBannerCopy: 'Has superat amb èxit les activitats. Enhorabona!'
   },
   es: {
     eyebrow: 'Aprendizaje interactivo',
@@ -139,6 +142,9 @@ const translations = {
     quizFeedbackIncorrect: 'No es correcto. Vuelve a intentarlo.',
     quizCheckContinue: 'Comprueba y sigue',
     quizCheckFinish: 'Comprueba y finaliza'
+    ,
+    completionBannerTitle: '¡Has completado el HTML Learning Lab!',
+    completionBannerCopy: 'Has superado con éxito las actividades. ¡Enhorabuena!'
   }
 };
 
@@ -157,9 +163,84 @@ const expectedTags = {
   2: 'a',
   3: 'img'
 };
+let quizLevel1Completed = false;
+let dragCompleted = false;
 
 function getTagLabel(tagName, lang = currentLanguage) {
   return translations[lang].dragTagLabels[tagName] || 'Etiqueta';
+}
+
+function updateMainProgress() {
+  const percent = dragCompleted ? 100 : (quizLevel1Completed ? 50 : 0);
+  const circle = document.querySelector('.main-progress .circle');
+  const text = document.querySelector('.main-progress .progress-text-circle');
+  if (circle) {
+    circle.setAttribute('stroke-dasharray', `${percent},100`);
+  }
+  if (text) {
+    text.textContent = `${percent}%`;
+  }
+  // show completion banner on home when fully complete
+  const banner = document.getElementById('completion-banner');
+  if (banner) {
+    if (percent === 100) {
+      banner.classList.remove('hidden');
+    } else {
+      banner.classList.add('hidden');
+    }
+  }
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+function shuffleLevelOptions(level) {
+  const container = document.getElementById(`level-${level}`);
+  if (!container) return;
+  const labels = Array.from(container.querySelectorAll('label'));
+  if (labels.length <= 1) return;
+  shuffleArray(labels);
+  const button = container.querySelector('button[data-level]');
+  labels.forEach(lbl => container.insertBefore(lbl, button));
+  // clear any previous radio selection so the student must choose again
+  container.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+}
+
+function rebuildTagBankForLevel(level) {
+  const levelEl = document.getElementById(`drag-level-${level}`);
+  if (!levelEl) return;
+  const tagBank = levelEl.querySelector('.tag-bank');
+  if (!tagBank) return;
+  const slots = Array.from(levelEl.querySelectorAll('.slot'));
+  const required = slots.map(s => s.dataset.correct).filter(Boolean);
+  const tagsArr = required.slice();
+  shuffleArray(tagsArr);
+
+  let html = `<p class="bank-title">${translations[currentLanguage].dragBankTitle}</p>`;
+  tagsArr.forEach(tagName => {
+    html += `<div class="tag" draggable="true" data-tag="${tagName}"><strong>&lt;${tagName}&gt;</strong><span>${getTagLabel(tagName)}</span></div>`;
+  });
+  tagBank.innerHTML = html;
+
+  tagBank.querySelectorAll('.tag').forEach(tag => {
+    tag.addEventListener('dragstart', event => {
+      event.dataTransfer.setData('text/plain', tag.dataset.tag);
+      tag.classList.add('dragging');
+    });
+    tag.addEventListener('dragend', () => {
+      tag.classList.remove('dragging');
+    });
+  });
+}
+
+function rebuildAllTagBanks() {
+  for (let i = 1; i <= totalDragLevels; i++) {
+    rebuildTagBankForLevel(i);
+  }
 }
 
 function setLanguage(lang) {
@@ -228,6 +309,17 @@ function setLanguage(lang) {
       resetDragGame();
     }
   }
+
+  // set banner and creator badge text according to language
+  const bannerTitle = document.getElementById('banner-title');
+  const bannerCopy = document.getElementById('banner-copy');
+  if (bannerTitle) bannerTitle.textContent = t.completionBannerTitle || '';
+  if (bannerCopy) bannerCopy.textContent = t.completionBannerCopy || '';
+
+  const badge = document.querySelector('.creator-badge .creator-text');
+  if (badge) {
+    badge.textContent = `Created by Alberto Climent — 2026`;
+  }
 }
 
 function showScreen(screenId) {
@@ -250,6 +342,8 @@ function updateProgress(level) {
 
 function showPage(level) {
   document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
+  // shuffle options for the level whenever the page is shown
+  shuffleLevelOptions(level);
   document.getElementById(`level-${level}`).classList.remove('hidden');
   updateProgress(level);
 }
@@ -267,6 +361,8 @@ function disableInputs(section) {
 
 function initQuizMode() {
   showScreen('quiz-mode');
+  // force a fresh shuffle when entering quiz from menu
+  shuffleLevelOptions(1);
   showPage(1);
 
   document.querySelectorAll('#quiz-mode button[data-level]').forEach(button => {
@@ -287,6 +383,19 @@ function initQuizMode() {
         disableInputs(button.parentElement);
         button.disabled = true;
 
+        if (level === 1) {
+          quizLevel1Completed = true;
+          const dragBtn = document.getElementById('home-drag-btn');
+          if (dragBtn) {
+            dragBtn.disabled = false;
+            const card = dragBtn.closest('.mode-card');
+            if (card) card.classList.remove('locked');
+            const caption = card && card.querySelector('.locked-caption');
+            if (caption) caption.style.display = 'none';
+          }
+          updateMainProgress();
+        }
+
         if (level < totalLevels) {
           setTimeout(() => showPage(level + 1), 700);
         } else {
@@ -295,6 +404,10 @@ function initQuizMode() {
       } else {
         message.textContent = translations[currentLanguage].quizFeedbackIncorrect;
         message.className = 'message error';
+        // re-shuffle level 1 options after an incorrect attempt to avoid position learning
+        if (level === 1) {
+          shuffleLevelOptions(1);
+        }
       }
     });
   });
@@ -365,11 +478,15 @@ function showDragLevel(level) {
   document.getElementById(`drag-level-${level}`).classList.remove('hidden');
   document.getElementById('drag-level-indicator').textContent = `${translations[currentLanguage].dragLevelLabel} ${level} / ${totalDragLevels}`;
   currentDragLevel = level;
+  // rebuild the bank for the level so tags are freshly shuffled every time
+  rebuildTagBankForLevel(level);
   resetDragGame();
 }
 
 function initDragMode() {
   showScreen('drag-mode');
+  // rebuild and shuffle all tag banks when entering drag mode
+  rebuildAllTagBanks();
   showDragLevel(1);
 
   document.querySelectorAll('#drag-mode .tag').forEach(tag => {
@@ -392,11 +509,10 @@ function initDragMode() {
       slot.addEventListener('drop', event => {
         event.preventDefault();
         const draggedTag = event.dataTransfer.getData('text/plain');
-        const tagBankItem = game.querySelector(`.tag[data-tag="${draggedTag}"]`);
-
-        if (!tagBankItem || tagBankItem.classList.contains('used')) {
-          return;
-        }
+        // Find first available (not used) tag element matching the draggedTag
+        const tagCandidates = Array.from(game.querySelectorAll(`.tag[data-tag="${draggedTag}"]`));
+        const tagBankItem = tagCandidates.find(t => !t.classList.contains('used'));
+        if (!tagBankItem) return;
 
         const existingTag = slot.querySelector('.tag');
         if (existingTag) {
@@ -434,7 +550,15 @@ function initDragMode() {
       feedback.className = 'message success';
       feedback.textContent = translations[currentLanguage].dragFeedbackCorrect;
       showDragExplanation(currentDragLevel);
-      document.getElementById('next-drag-level').classList.remove('hidden');
+      if (currentDragLevel < totalDragLevels) {
+        document.getElementById('next-drag-level').classList.remove('hidden');
+      } else {
+        // final drag level completed
+        document.getElementById('next-drag-level').classList.add('hidden');
+        document.getElementById('drag-complete').classList.remove('hidden');
+        dragCompleted = true;
+        updateMainProgress();
+      }
     } else {
       feedback.textContent = translations[currentLanguage].dragFeedbackError;
       feedback.className = 'message error';
@@ -448,6 +572,11 @@ function initDragMode() {
     if (currentDragLevel < totalDragLevels) {
       showDragLevel(currentDragLevel + 1);
     }
+  });
+
+  document.getElementById('drag-complete-btn').addEventListener('click', () => {
+    showScreen('home-screen');
+    document.getElementById('drag-complete').classList.add('hidden');
   });
 }
 
@@ -475,6 +604,16 @@ function init() {
     });
   });
 
+  // Apply initial locked state for drag mode if level 1 not completed
+  const dragBtn = document.getElementById('home-drag-btn');
+  if (dragBtn && !quizLevel1Completed) {
+    const card = dragBtn.closest('.mode-card');
+    if (card) card.classList.add('locked');
+    const caption = card && card.querySelector('.locked-caption');
+    if (caption) caption.style.display = 'block';
+  }
+
+  updateMainProgress();
   showScreen('home-screen');
 }
 
